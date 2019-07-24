@@ -9,4 +9,10 @@ fi
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-alias="ls -la"
+current_user=$(whoami)
+
+alias ll="ls -la"
+
+alias psown="ps -ef --sort=start_time | grep -v grep | grep ${current_user}"
+alias zombies="ps -ef --sort=start_time | grep -v grep | grep \"defunct\""
+
