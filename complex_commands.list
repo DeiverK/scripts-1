@@ -1,0 +1,3 @@
+FIND -AND and -OR
+find . -type f \(-name "*.log" -and ! -name "*unwanted_string*" -and "*other_unwanted_string*" \) -exec grep -r -H "seek_string" {} \;
+
