@@ -15,4 +15,4 @@ alias ll="ls -la"
 
 alias psown="ps -ef --sort=start_time | grep -v grep | grep ${current_user}"
 alias zombies="ps -ef --sort=start_time | grep -v grep | grep \"defunct\""
-
+alias countzs="ps aux | awk '{print \$8}' | grep -c Z"
