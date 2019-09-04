@@ -1,0 +1,53 @@
+yum update
+yum install vim
+yum install redhat-lsb-core net-tools epel-release kernel-headers kernel-devel 
+yum groupinstall "Development Tools"
+yum groupinstall "X Window System" "MATE Desktop"
+systemctl set-default graphical.target
+systemctl isolate graphical.target
+
+Disk:
+	tree
+	
+
+Performance:
+	iostat
+	vmstat
+	netstat
+	mpstat
+	top
+	glances
+	
+Networking:
+	nc
+	nmap
+	tcpdump
+	telnet
+	
+Open files:
+	lsof
+	
+Network troubleshooting
+	Configure server with netcat:
+		Tool: netcat
+		Command: netcat -l -u -p 2323
+		Check: netstat -tulpen
+		
+	Open port:
+		1. Check current open ports:
+			firewall-cmd --list-ports
+		2. Reload configuration:
+			firewall-cmd --reload
+		3. Check configured ports:
+			firewall-cmd --list-ports
+		4. Open port permanently:
+			firewall-cmd add-port=2323/udp --permanent 
+		5. Reload configuration
+			firewall-cmd --reload
+	Open service (Check /etc/services)
+		1. Same process
+		2. Set configuration:
+			firewall-cmd --permanent --add-service=http
+		3. List services:
+			firewall-cmd --list-services
+		
