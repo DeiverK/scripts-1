@@ -1,3 +1,7 @@
+syntax on
+colo desert
+
+
 set showmode
 set nonumber
 set nohlsearch
