@@ -21,5 +21,10 @@ au BufNewFile,BufRead *.py match BadWhitespace /\s\+$/
 abbr _sh #!/bin/bash
 nmap <C-N> :set invnumber<CR>
 
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
-# set number
+set splitbelow
+set splitright
