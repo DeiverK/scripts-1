@@ -15,10 +15,13 @@ set fileformat=unix
 set encoding=utf-8
 
 
-au BufNewFile,BufRead *.py match BadWhitespace /\s\+$/
+"au BufNewFile,BufRead *.py match BadWhitespace /\s\+$/
 
 
 abbr _sh #!/bin/bash
+abbr _py #!/usr/bin/env python36
+abbr _pr print("")
+
 nmap <C-N> :set invnumber<CR>
 
 nnoremap <C-J> <C-W><C-J>
