@@ -1,0 +1,15 @@
+lscpu
+lshw
+lspci
+lsscsi
+lsusb
+lsbkl
+hwinfo
+lnxi
+df
+pydf
+fdisk
+mount
+free
+dmidecode
+hdparm
