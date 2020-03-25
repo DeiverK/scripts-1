@@ -1,0 +1,6 @@
+git filter-branch --index-filter 'git rm -rf --cached --ignore-unmatch .idea' --prune-empty --tag-name-filter cat -- --all
+git filter-branch --index-filter 'git rm -rf --cached --ignore-unmatch terraform/components/lz-aws-config/' --prune-empty --tag-name-filter cat -- --all
+git filter-branch --index-filter 'git rm -rf --cached --ignore-unmatch terraform/templates/modules/guard-duty-master/.terraform/plugins/windows_amd64/terraform-provider-aws_v2.49.0_x4.exe' --prune-empty --tag-name-filter cat -- --all
+git for-each-ref --format="%(refname)" refs/original/ | while read ref; do git update-ref -d $ref; done
+git reflog expire --expire=now --all
+git gc --prune=now
