@@ -1,24 +1,24 @@
 import boto3
+import configparser
 
-# Create an STS client
-sts_client = boto3.client('sts')
+# Read credentials file
+config = configparser.ConfigParser()
+config.read(os.path.expanduser('~/.aws/credentials'))
 
-# Assume the role
-response = sts_client.assume_role(
-    RoleArn='arn:aws:iam::ACCOUNT_ID:role/ROLE_NAME',
-    RoleSessionName='session_name',
-    DurationSeconds=3600
-)
+# Get access key and secret key from credentials file
+access_key = config.get('root', 'aws_access_key_id')
+secret_key = config.get('root', 'aws_secret_access_key')
 
-# Use the returned credentials to create a new session
+# Authenticate with MFA
+mfa_code = input("Enter MFA code: ")
 session = boto3.Session(
-    aws_access_key_id=response['Credentials']['AccessKeyId'],
-    aws_secret_access_key=response['Credentials']['SecretAccessKey'],
-    aws_session_token=response['Credentials']['SessionToken']
+    aws_access_key_id=access_key,
+    aws_secret_access_key=secret_key,
+    mfa_serial_number='arn:aws:iam::ACCOUNT_ID:mfa/USERNAME',
+    mfa_token=mfa_code
 )
 
-# Use the new session to create a client for an AWS service
-s3_client = session.client('s3')
-
-# Make a call to the service using the assumed role
-response = s3_client.list_buckets()
+# List S3 buckets
+s3 = session.client('s3')
+buckets = s3.list_buckets()
+print(buckets)
