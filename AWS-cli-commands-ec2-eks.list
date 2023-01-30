@@ -7,3 +7,7 @@ aws ec2 describe-instances --instance-ids <instance_id> --query 'Reservations[].
 aws ec2 describe-instances --instance-ids i-0123456789abcdef0 i-0123456789abcdef1 --query 'Reservations[].Instances[].InstanceId' --output text | xargs aws ec2 stop-instances --instance-ids
 
 
+aws ec2 describe-instances --instance-ids <instance_id> --query 'Reservations[].Instances[].PrivateDnsName' --output text
+
+
+
