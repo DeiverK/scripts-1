@@ -30,3 +30,6 @@ aws autoscaling set-instance-protection --instance-ids <instance_id1> <instance_
 
 CLUSTER_NAME="my-eks-cluster"
 aws autoscaling describe-auto-scaling-groups --query "AutoScalingGroups[?contains(Tags[?Key=='aws:cloudformation:stack-name'].Value,'$CLUSTER_NAME')].AutoScalingGroupName" --output text
+
+ASG_NAME="my-asg"
+aws ec2 describe-instances --query "Reservations[].Instances[?AutoScalingGroupName=='$ASG_NAME'].{InstanceId:InstanceId, Hostname:PrivateDnsName}" --output table
