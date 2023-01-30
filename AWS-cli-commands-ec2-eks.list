@@ -13,4 +13,11 @@ aws ec2 describe-instances --instance-ids <instance_id> --query 'Reservations[].
 aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[?contains(Tags[?Key==`aws:eks:cluster-name`].Value,`<cluster_name>`)].AutoScalingGroupName' --output text
 
 
+aws autoscaling describe-auto-scaling-instances --auto-scaling-group-name <asg_name> --query 'AutoScalingInstances[].InstanceId' --output text
+
+
+aws autoscaling set-desired-capacity --auto-scaling-group-name <asg_name> --desired-capacity <desired_capacity>
+
+aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names <asg_name> --query 'AutoScalingGroups[].{DesiredCapacity:DesiredCapacity, MinSize:MinSize, MaxSize:MaxSize}' --output text
+aws autoscaling update-auto-scaling-group --auto-scaling-group-name <asg_name> --desired-capacity <desired_capacity> --min-size <min_capacity> --max-size <max_capacity>
 
