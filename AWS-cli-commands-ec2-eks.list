@@ -21,3 +21,10 @@ aws autoscaling set-desired-capacity --auto-scaling-group-name <asg_name> --desi
 aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names <asg_name> --query 'AutoScalingGroups[].{DesiredCapacity:DesiredCapacity, MinSize:MinSize, MaxSize:MaxSize}' --output text
 aws autoscaling update-auto-scaling-group --auto-scaling-group-name <asg_name> --desired-capacity <desired_capacity> --min-size <min_capacity> --max-size <max_capacity>
 
+protect instances in an ASG from scale-in:
+aws autoscaling set-instance-protection --instance-ids $(aws autoscaling describe-auto-scaling-instances --auto-scaling-group-name <asg_name> --query 'AutoScalingInstances[].InstanceId' --output text) --auto-scaling-group-name <asg_name> --protected-from-scale-in
+
+Remove instance protection of a list of instances:
+aws autoscaling set-instance-protection --instance-ids <instance_id1> <instance_id2> ... --auto-scaling-group-name <asg_name> --no-protected-from-scale-in
+
+
