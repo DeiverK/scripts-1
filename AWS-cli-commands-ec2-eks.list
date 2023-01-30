@@ -37,3 +37,5 @@ aws ec2 describe-instances --query "Reservations[].Instances[?AutoScalingGroupNa
 
 ASG_NAME="my-asg"
 aws autoscaling describe-auto-scaling-instances --query "AutoScalingInstances[?AutoScalingGroupName=='$ASG_NAME'].{InstanceId:InstanceId, Hostname:PrivateDnsName}" --output table
+
+aws ec2 describe-instances --instance-ids <instance-id> --query 'Reservations[*].Instances[*].ImageId' --output text
