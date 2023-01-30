@@ -1,1 +1,6 @@
 aws ec2 describe-instances --filters "Name=tag:aws:eks:cluster-name,Values=<cluster_name>" "Name=instance-state-name,Values=running" --query 'Reservations[].Instances[].InstanceId' --output text
+
+
+aws ec2 describe-instances --instance-ids <instance_id> --query 'Reservations[].Instances[].PrivateDnsName' --output text
+
+
