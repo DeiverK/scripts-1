@@ -10,4 +10,7 @@ aws ec2 describe-instances --instance-ids i-0123456789abcdef0 i-0123456789abcdef
 aws ec2 describe-instances --instance-ids <instance_id> --query 'Reservations[].Instances[].PrivateDnsName' --output text
 
 
+aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[?contains(Tags[?Key==`aws:eks:cluster-name`].Value,`<cluster_name>`)].AutoScalingGroupName' --output text
+
+
 
