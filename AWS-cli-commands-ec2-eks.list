@@ -33,3 +33,7 @@ aws autoscaling describe-auto-scaling-groups --query "AutoScalingGroups[?contain
 
 ASG_NAME="my-asg"
 aws ec2 describe-instances --query "Reservations[].Instances[?AutoScalingGroupName=='$ASG_NAME'].{InstanceId:InstanceId, Hostname:PrivateDnsName}" --output table
+
+
+ASG_NAME="my-asg"
+aws autoscaling describe-auto-scaling-instances --query "AutoScalingInstances[?AutoScalingGroupName=='$ASG_NAME'].{InstanceId:InstanceId, Hostname:PrivateDnsName}" --output table
