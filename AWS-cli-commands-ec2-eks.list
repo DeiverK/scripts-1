@@ -28,3 +28,5 @@ Remove instance protection of a list of instances:
 aws autoscaling set-instance-protection --instance-ids <instance_id1> <instance_id2> ... --auto-scaling-group-name <asg_name> --no-protected-from-scale-in
 
 
+CLUSTER_NAME="my-eks-cluster"
+aws autoscaling describe-auto-scaling-groups --query "AutoScalingGroups[?contains(Tags[?Key=='aws:cloudformation:stack-name'].Value,'$CLUSTER_NAME')].AutoScalingGroupName" --output text
