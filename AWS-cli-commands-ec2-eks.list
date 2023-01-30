@@ -4,3 +4,6 @@ aws ec2 describe-instances --filters "Name=tag:aws:eks:cluster-name,Values=<clus
 aws ec2 describe-instances --instance-ids <instance_id> --query 'Reservations[].Instances[].PrivateDnsName' --output text
 
 
+aws ec2 describe-instances --instance-ids i-0123456789abcdef0 i-0123456789abcdef1 --query 'Reservations[].Instances[].InstanceId' --output text | xargs aws ec2 stop-instances --instance-ids
+
+
