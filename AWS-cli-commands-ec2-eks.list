@@ -53,3 +53,11 @@ get_private_dns_name () {
   aws ec2 describe-instances --instance-ids "$instance_id" --query 'Reservations[0].Instances[0].PrivateDnsName' --output text
 }
 
+get_ami_name () {
+  instance_id=$1
+  aws ec2 describe-instances --instance-ids $instance_id \
+    --query 'Reservations[0].Instances[0].ImageId' --output text
+}
+
+ami_name=$(get_ami_name i-0123456789abcdef0)
+echo "The AMI name is: $ami_name"
