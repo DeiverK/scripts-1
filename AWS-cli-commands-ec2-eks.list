@@ -61,3 +61,5 @@ get_ami_name () {
 
 ami_name=$(get_ami_name i-0123456789abcdef0)
 echo "The AMI name is: $ami_name"
+
+aws ec2 describe-images --image-ids <ami-id> --query 'Images[].Name' --output text
