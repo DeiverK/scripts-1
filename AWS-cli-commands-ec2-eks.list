@@ -40,3 +40,12 @@ aws autoscaling describe-auto-scaling-instances --query "AutoScalingInstances[?A
 
 aws ec2 describe-instances --instance-ids <instance-id> --query 'Reservations[*].Instances[*].ImageId' --output text
 aws ec2 describe-images --image-ids $(aws ec2 describe-instances --instance-ids <instance-id> --query 'Reservations[*].Instances[*].ImageId' --output text) --query 'Images[*].Name' --output text
+
+function double_asg_size() {
+  ASG_NAME=$1
+  CURRENT_SIZE=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $ASG_NAME --query 'AutoScalingGroups[*].DesiredCapacity' --output text)
+  NEW_SIZE=$((CURRENT_SIZE * 2))
+  aws autoscaling update-auto-scaling-group --auto-scaling-group-name $ASG_NAME --desired-capacity $NEW_SIZE
+}
+
+
