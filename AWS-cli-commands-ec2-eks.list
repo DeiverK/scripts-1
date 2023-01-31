@@ -48,4 +48,8 @@ function double_asg_size() {
   aws autoscaling update-auto-scaling-group --auto-scaling-group-name $ASG_NAME --desired-capacity $NEW_SIZE
 }
 
+get_private_dns_name () {
+  local instance_id=$1
+  aws ec2 describe-instances --instance-ids "$instance_id" --query 'Reservations[0].Instances[0].PrivateDnsName' --output text
+}
 
