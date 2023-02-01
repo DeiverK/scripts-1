@@ -66,3 +66,5 @@ aws ec2 describe-images --image-ids <ami-id> --query 'Images[].Name' --output te
 
 
 aws ec2 describe-instances --filters "Name=private-dns-name,Values=<private-dns-name>" --query "Reservations[].Instances[].InstanceId" --output text
+
+aws autoscaling describe-auto-scaling-instances --instance-ids <instance_id> --query 'AutoScalingInstances[0].AutoScalingGroupName'
