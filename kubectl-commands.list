@@ -1,0 +1,1 @@
+kubectl get nodes --sort-by=.metadata.creationTimestamp --output=json | jq '.items[] | {name: .metadata.name, age: .metadata.creationTimestamp, OSImage: .status.nodeInfo.operatingSystem}'
