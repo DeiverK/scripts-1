@@ -1,3 +1,5 @@
 kubectl get nodes --sort-by=.metadata.creationTimestamp --output=json | jq '.items[] | {name: .metadata.name, age: .metadata.creationTimestamp, OSImage: .status.nodeInfo.operatingSystem}'
 
 kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.conditions[?(@.type=="Ready")].status}{"\t"}{.metadata.creationTimestamp}{"\t"}{.status.nodeInfo.kubeletVersion}{"\t"}{.status.nodeInfo.osImage}{"\n"}{end}'
+
+kubectl get nodes --sort-by='.metadata.creationTimestamp' -o wide | awk '{print $1,$7,$3}' | sort -k 3
